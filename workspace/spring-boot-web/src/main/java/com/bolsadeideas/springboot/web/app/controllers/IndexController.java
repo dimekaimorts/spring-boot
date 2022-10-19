@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value = "/app")
 public class IndexController {
 
-    @GetMapping(value = {"/index", "/", "/home"})
+    @GetMapping(value = {"","/index", "/", "/home"})
     public String index(Model mv) {
         mv.addAttribute("titulo", "Hola Spring Boot Framework con Model");
         return "index";
