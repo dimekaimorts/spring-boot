@@ -1,5 +1,8 @@
 package com.bolsadeideas.springboot.web.app.controllers;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +26,26 @@ public class IndexController {
 
         usuario.setNombre("Andres");
         usuario.setApellido("Gonzalez");
+        usuario.setEmail("andy.gz@gmail.com");
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("titulo", "Perfil del usuario: ".concat(usuario.getNombre()));
         return "perfil";
+    }
+
+    @RequestMapping(value = "/listar")
+    public String listar(Model model) {
+
+        List<Usuario> usuarios = Arrays.asList(
+            new Usuario("Andres", "Guzman", "andy.gz@gmail.com"),
+            new Usuario("Ana", "Mercado", "ana.mec@gmail.com"),
+            new Usuario("Julian", "Rosas", "jul.ros@gmail.com"),
+            new Usuario("Tornado", "Mack", "tor.mack@gmail.com")
+        );
+
+        model.addAttribute("titulo", "Lista de usuarios");
+        model.addAttribute("usuarios", usuarios);
+        return "listar";
     }
 
 }
